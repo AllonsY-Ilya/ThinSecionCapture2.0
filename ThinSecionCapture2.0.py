@@ -79,12 +79,7 @@ class ImageApp:
         self.rect_rotation_scale.set(0)  # Устанавливаем начальный угол 0 градусов
         self.rect_rotation_scale.pack()
 
-        # Метки для отображения размеров прямоугольника в мм
-        self.rect_width_mm_label = tk.Label(self.block2_frame, text="Ширина прямоугольника: 0.00 мм")
-        self.rect_width_mm_label.pack()
 
-        self.rect_height_mm_label = tk.Label(self.block2_frame, text="Высота прямоугольника: 0.00 мм")
-        self.rect_height_mm_label.pack()
 
         # Кнопка для запоминания текущего размера прямоугольника и радиуса окружности
         self.save_shape_button = tk.Button(self.block2_frame, text="Запомнить размер прямоугольника и радиус",
@@ -308,8 +303,7 @@ class ImageApp:
             self.rect_height_mm = self.rect_height * pixel_size_mm
 
             # Обновляем метки с размерами
-            self.rect_width_mm_label.config(text=f"Ширина прямоугольника: {self.image_width_mm * rect_width_percent:.2f} мм")
-            self.rect_height_mm_label.config(text=f"Высота прямоугольника: {self.image_height_mm * rect_height_percent:.2f} мм")
+
 
             # Рисуем прямоугольник и окружность
             self.draw_rectangle_and_circle()
@@ -341,7 +335,7 @@ class ImageApp:
         # Расчет актуальных размеров изображения
         right_crop_percent = float(self.right_crop_scale.get()) / 100
         cropped_width = float(self.right_crop_scale.get())*33.333
-        print(cropped_width)
+
         bottom_crop_percent = float(self.bottom_crop_scale.get()) / 100
         cropped_height = float(self.bottom_crop_scale.get())*33.333
 
