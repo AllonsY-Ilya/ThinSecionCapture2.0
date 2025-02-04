@@ -17,7 +17,7 @@ class ImageApp:
         self.root.minsize(1980, 1200)
 
         # Создаем фреймы
-        self.left_frame = tk.Frame(self.root, width=window_width // 2)
+        self.left_frame = tk.Frame(self.root, width=window_width // 3)
         self.left_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.right_frame = tk.Frame(self.root)
@@ -37,7 +37,7 @@ class ImageApp:
 
         self.right_crop_scale = tk.Entry(self.block1_frame)
         self.right_crop_scale.pack()
-        self.right_crop_scale.insert(0, "30")  # Установка значения по умолчанию
+        self.right_crop_scale.insert(0, "5")  # Установка значения по умолчанию
         self.right_crop_scale.bind("<KeyRelease>", self.update_crop)
 
         self.bottom_crop_scale_entry = tk.Label(self.block1_frame, text="Ширина шлифа мм:")
@@ -45,7 +45,7 @@ class ImageApp:
 
         self.bottom_crop_scale = tk.Entry(self.block1_frame)
         self.bottom_crop_scale.pack()
-        self.bottom_crop_scale.insert(0, "35")  # Установка значения по умолчанию
+        self.bottom_crop_scale.insert(0, "6")  # Установка значения по умолчанию
         self.bottom_crop_scale.bind("<KeyRelease>", self.update_crop)
 
         # Кнопка загрузки
@@ -57,7 +57,7 @@ class ImageApp:
         self.block2_frame.pack(fill=tk.X, pady=5)
 
         # Ползунки для управления размерами прямоугольника
-        self.rect_width_scale_entry = tk.Label(self.block2_frame, text="Ширина прямоугольника мм:")
+        self.rect_width_scale_entry = tk.Label(self.block2_frame, text="Высота прямоугольника мм:")
         self.rect_width_scale_entry.pack()
 
         self.rect_width_scale = tk.Entry(self.block2_frame)
@@ -65,7 +65,7 @@ class ImageApp:
         self.rect_width_scale.insert(0, "5")  # Установка значения по умолчанию
         self.rect_width_scale.bind("<KeyRelease>", self.update_rectangle)
 
-        self.rect_height_scale_entry = tk.Label(self.block2_frame, text="Высота прямоугольника мм:")
+        self.rect_height_scale_entry = tk.Label(self.block2_frame, text="Ширина прямоугольника мм:")
         self.rect_height_scale_entry.pack()
 
         self.rect_height_scale = tk.Entry(self.block2_frame)
@@ -170,8 +170,8 @@ class ImageApp:
         #right_crop = int((int(self.right_crop_scale.get()) / 100) * new_width)
         #bottom_crop = int((int(self.bottom_crop_scale.get()) / 100) * new_height)
 
-        cropped_width = float(self.right_crop_scale.get())*33.3333
-        cropped_height = float(self.bottom_crop_scale.get())*33.3333
+        cropped_width = float(self.right_crop_scale.get())*183.6
+        cropped_height = float(self.bottom_crop_scale.get())*183.6
 
         try:
             self.image_resized = self.image.resize((new_width, new_height), Image.Resampling.LANCZOS).crop(
@@ -295,8 +295,8 @@ class ImageApp:
             rect_height_percent = float(self.rect_height_scale.get()) / 100
 
             # Минимальный прямоугольник
-            self.rect_width = max(5, 33.333 * float(self.rect_width_scale.get()))
-            self.rect_height = max(5, 33.333 * float(self.rect_height_scale.get()))
+            self.rect_width = max(5, 183.6 * float(self.rect_width_scale.get()))
+            self.rect_height = max(5, 183.6 * float(self.rect_height_scale.get()))
 
             # Переводим размеры в миллиметры
             self.rect_width_mm = self.rect_width * pixel_size_mm
@@ -334,13 +334,13 @@ class ImageApp:
 
         # Расчет актуальных размеров изображения
         right_crop_percent = float(self.right_crop_scale.get()) / 100
-        cropped_width = float(self.right_crop_scale.get())*33.333
+        cropped_width = float(self.right_crop_scale.get())*183.6
 
         bottom_crop_percent = float(self.bottom_crop_scale.get()) / 100
-        cropped_height = float(self.bottom_crop_scale.get())*33.333
+        cropped_height = float(self.bottom_crop_scale.get())*183.6
 
         # Максимальная координата для центра последней окружности
-        max_center_x = cropped_width + self.saved_radius*1.25
+        max_center_x = cropped_width + self.saved_radius*1.5
         max_center_y = cropped_height + self.saved_radius*1.1
 
 
