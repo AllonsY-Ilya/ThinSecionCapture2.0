@@ -170,8 +170,8 @@ class ImageApp:
         #right_crop = int((int(self.right_crop_scale.get()) / 100) * new_width)
         #bottom_crop = int((int(self.bottom_crop_scale.get()) / 100) * new_height)
 
-        cropped_width = float(self.right_crop_scale.get())*183.6
-        cropped_height = float(self.bottom_crop_scale.get())*183.6
+        cropped_width = float(self.right_crop_scale.get())*120
+        cropped_height = float(self.bottom_crop_scale.get())*120
 
         try:
             self.image_resized = self.image.resize((new_width, new_height), Image.Resampling.LANCZOS).crop(
@@ -295,8 +295,8 @@ class ImageApp:
             rect_height_percent = float(self.rect_height_scale.get()) / 100
 
             # Минимальный прямоугольник
-            self.rect_width = max(5, 183.6 * float(self.rect_width_scale.get()))
-            self.rect_height = max(5, 183.6 * float(self.rect_height_scale.get()))
+            self.rect_width = max(5, 120 * float(self.rect_width_scale.get()))
+            self.rect_height = max(5, 120 * float(self.rect_height_scale.get()))
 
             # Переводим размеры в миллиметры
             self.rect_width_mm = self.rect_width * pixel_size_mm
@@ -334,10 +334,10 @@ class ImageApp:
 
         # Расчет актуальных размеров изображения
         right_crop_percent = float(self.right_crop_scale.get()) / 100
-        cropped_width = float(self.right_crop_scale.get())*183.6
+        cropped_width = float(self.right_crop_scale.get())*120
 
         bottom_crop_percent = float(self.bottom_crop_scale.get()) / 100
-        cropped_height = float(self.bottom_crop_scale.get())*183.6
+        cropped_height = float(self.bottom_crop_scale.get())*120
 
         # Максимальная координата для центра последней окружности
         max_center_x = cropped_width + self.saved_radius*1.5
